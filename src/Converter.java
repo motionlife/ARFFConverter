@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-public class Main {
+public class Converter {
     private static final String ZIP_TRAIN = "dataset/ZipFiles/enron1_train.zip";
     private static final String ZIP_TEST = "dataset/ZipFiles/enron1_test.zip";
     private static Set<String> dictionary;
