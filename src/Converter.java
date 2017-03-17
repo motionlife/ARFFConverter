@@ -31,14 +31,15 @@ public class Converter {
         convert(ENRON1_TRAIN, ENRON1_TEST);
         convert(ENRON4_TRAIN, ENRON4_TEST);
         convert(HW2_TRAIN, HW2_TEST);
+        System.out.println("Converted Success! Check " + ARFF_DIR + " folder!");
     }
 
     /**
      * Convert a train zip(ham and spam) and its corresponding test zip(ham and spam) at the same time
-     * */
+     */
     private static void convert(String trainRelation, String testRelation) {
-        String trainZipFile =  ZIP_DIR+"/"+trainRelation+".zip";
-        String testZipFile =  ZIP_DIR+"/"+testRelation+".zip";
+        String trainZipFile = ZIP_DIR + "/" + trainRelation + ".zip";
+        String testZipFile = ZIP_DIR + "/" + testRelation + ".zip";
         List<String> word_list = countWords(trainZipFile);
         ArrayList<TextVector> vectors = toVectors(trainZipFile, "ham", word_list);
         vectors.addAll(toVectors(trainZipFile, "spam", word_list));
@@ -50,7 +51,7 @@ public class Converter {
 
     /**
      * Convert a list of text vectors to an arff file
-     * */
+     */
     private static void toARFF(ArrayList<TextVector> vectors, int size, String relation) {
         StringBuilder content = new StringBuilder(COMMENTS);
         content.append("@RELATION ").append(relation).append("\n\n");
@@ -80,7 +81,7 @@ public class Converter {
 
     /**
      * Count the words in the training data set making an ordered set use as a reference for vectors
-     * */
+     */
     private static List<String> countWords(String trainingZip) {
         Set<String> dictionary = new LinkedHashSet<>();
         try (ZipFile zipFile = new ZipFile(trainingZip)) {
@@ -108,7 +109,7 @@ public class Converter {
 
     /**
      * Read a zip file and convert the original text file into list of text vectors
-     * */
+     */
     private static ArrayList<TextVector> toVectors(String zip, String type, List<String> word_list) {
         ArrayList<TextVector> vectors = new ArrayList<>();
         try (ZipFile zipFile = new ZipFile(zip)) {
